@@ -105,6 +105,54 @@ namespace TDD.Test
             //Assert
             Assert.AreEqual(result, 2);
         }
+        [TestMethod]
+        public void StringCalculato_GreaterThousandIgnored_ReturnSumOfThem()
+        {
+            //Arrange
+            var str = "//;\n1;2;5;1001";
+
+            //Act 
+            int result = _calculator.Sum(str);
+
+            //Assert
+            Assert.AreEqual(result, 8);
+        }
+        [TestMethod]
+        public void StringCalculato_AnyLengthDelimiter_ReturnSumOfThem()
+        {
+            //Arrange
+            var str = "//***\n1***2***5***1001";
+
+            //Act 
+            int result = _calculator.Sum(str);
+
+            //Assert
+            Assert.AreEqual(result, 8);
+        }
+        [TestMethod]
+        public void StringCalculato_MultipleDelimiters_ReturnSumOfThem()
+        {
+            //Arrange
+            var str = "//*%\n1*2%5%1001";
+
+            //Act 
+            int result = _calculator.Sum(str);
+
+            //Assert
+            Assert.AreEqual(result, 8);
+        }
+        [TestMethod]
+        public void StringCalculato_MultipleDelimitersLengthLongerOneChar_ReturnSumOfThem()
+        {
+            //Arrange
+            var str = "//*%\n1**%2%5%**1001";
+
+            //Act 
+            int result = _calculator.Sum(str);
+
+            //Assert
+            Assert.AreEqual(result, 8);
+        }
 
         // 1212,ijigf,13,132        ijigf =0
         // 11,,1,1
